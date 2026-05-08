@@ -1,0 +1,42 @@
+{
+  "name": "hive-mcp-deedlock",
+  "version": "1.0.0",
+  "description": "Hive DeedLock — real estate notarization, deed signing, and county recording attestations. Dual-signed (Ed25519 + ML-DSA-65) post-quantum-ready Swarm-MAPET receipt envelopes; ALTA UCD / MISMO 3.4 / RON / PRIA aligned.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "mcp",
+    "real-estate",
+    "notary",
+    "ron",
+    "ipen",
+    "deed",
+    "recording",
+    "alta",
+    "mismo",
+    "pria",
+    "fincen",
+    "hud-1",
+    "title",
+    "escrow",
+    "post-quantum",
+    "blockchain",
+    "hive"
+  ],
+  "license": "MIT",
+  "author": "Hive Civilization, Inc.",
+  "homepage": "https://thehiveryiq.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srotzin/hive-mcp-deedlock.git"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

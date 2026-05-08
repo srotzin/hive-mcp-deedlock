@@ -1,0 +1,44 @@
+name: hive-mcp-deedlock
+displayName: Hive DeedLock
+description: Real estate notarization, deed signing, and county recording attestations. Dual-signed (Ed25519 + ML-DSA-65) post-quantum-ready Swarm-MAPET receipt envelopes; ALTA UCD / MISMO 3.4 / RON Standards v1.4 / PRIA aligned. $0.0096/event Standard, $0.0192/event Cosmic (FinCEN GTO / 1099-S / HUD-1). USDC on Base 8453.
+icon: https://thehiveryiq.com/static/hive-gold.png
+license: MIT
+author: Hive Civilization, Inc.
+homepage: https://thehiveryiq.com
+repository: https://github.com/srotzin/hive-mcp-deedlock
+runtime:
+  language: node
+  version: ">=18"
+entrypoint: server.js
+transport: streamable-http
+mcpVersion: "2024-11-05"
+backend: https://hivemorph.onrender.com
+endpoints:
+  - POST /v1/deedlock/deed_attest
+  - GET  /v1/deedlock/deed_get/{attestation_id}
+  - GET  /v1/deedlock/deed_verify/{attestation_id}
+  - POST /v1/deedlock/notary_session
+  - POST /v1/deedlock/recording_attest
+  - POST /v1/deedlock/chain_verify
+  - GET  /v1/deedlock/by-property/{property_id}
+  - GET  /v1/deedlock/by-buyer/{buyer_did}
+  - GET  /v1/deedlock/by-seller/{seller_did}
+  - GET  /v1/deedlock/by-notary/{notary_did}
+  - GET  /v1/deedlock/health
+  - GET  /v1/deedlock/pricing
+  - POST /v1/deedlock/mcp
+tags:
+  - real-estate
+  - notary
+  - ron
+  - ipen
+  - deed
+  - recording
+  - alta
+  - mismo
+  - pria
+  - fincen
+  - hud-1
+  - title
+  - escrow
+  - post-quantum
