@@ -112,3 +112,45 @@ npm start
 ## License
 
 MIT — Hive Civilization, Inc. Brand gold `#C08D23`.
+
+---
+
+## Agent-Callable
+
+**hive-mcp-deedlock** is fully agent-callable with no human-in-the-loop for standard attestation calls.
+
+| Property | Value |
+|----------|-------|
+| Discovery URL | `https://hivemorph.onrender.com/.well-known/agent-card.json` |
+| MCP endpoint | `https://hive-mcp-gateway.onrender.com/mcp` (JSON-RPC 2.0 / MCP 2024-11-05) |
+| Pricing | $0.0096 / event (Standard), $0.0192 / event (Cosmic/regulated) |
+| Payment | USDC on Base 8453 via x402 |
+| Treasury | `0x15184Bf50B3d3F52b60434f8942b7D52F2eB436E` |
+| DID | `did:hivemorph:w2loren:0x6b11b1bcaf253c` |
+| Hive site | [thehiveryiq.com](https://thehiveryiq.com) |
+
+### Sample request (attest a deed state transition)
+
+```bash
+# Step 1: get x402 quote (free)
+curl -X POST https://hivemorph.onrender.com/v1/x402/quote \
+  -H 'Content-Type: application/json' \
+  -d '{"agent_did":"did:example:agent","profile":"standard"}'
+
+# Step 2: settle USDC on Base 8453 (amount from quote)
+
+# Step 3: call with proof in X-Payment header
+curl -X POST https://hivemorph.onrender.com/v1/deedlock/deed_attest \
+  -H 'Content-Type: application/json' \
+  -H 'X-Payment: {"nonce":"<from_quote>","tx_hash":"<your_tx>","payer":"<your_addr>","chain":"base"}' \
+  -d '{
+    "property_id": "APN-12345-67",
+    "buyer_did": "did:example:buyer",
+    "seller_did": "did:example:seller",
+    "state": "Deed_Signed",
+    "notary_type": "RON",
+    "state_jurisdiction": "TX"
+  }'
+```
+
+Response: dual-signed Ed25519+ML-DSA-65 receipt with CBOR envelope, anchored on Base 8453.
